@@ -1,0 +1,24 @@
+.sort_section{
+    width: 20%;
+    align-items: flex-end;
+    display: flex;
+    justify-content: center;
+}
+.sort_section select{
+    width: 90%;
+    height: 50%;
+    font-size: 16px;
+    border-radius: 0;
+}
+
+@media only screen and (max-width: 900px){
+    .sort_section{
+        margin: 20px 0;
+        width: 100%;
+    }
+
+    .sort_section select{
+        padding: 20px;
+    }
+
+}
