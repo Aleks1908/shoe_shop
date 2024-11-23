@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(requestLoggerMiddleware);
 app.use(cors());
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 //Registration of routes
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/api/v1", appRouter); 
 appRouter.use("/items", itemRouter);
 appRouter.use("/auth", authRouter);
