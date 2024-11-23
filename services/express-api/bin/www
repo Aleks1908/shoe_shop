@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-import { app } from "../src/server/config/app.js"
+import { app } from "../src/server/app.js"
 import http from "http"
 import {logger} from "../src/server/config/logger-config.js"
 /**
