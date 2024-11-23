@@ -1,5 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useQuery } from "@tanstack/react-query";
+
+const registerUser = async (data) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (data.name && data.password) {
+        console.log("User registered:", data);
+        resolve(data);
+      } else {
+        reject(new Error("Registration failed"));
+      }
+    }, 1000);
+  });
+};
 
 export const RegisterPage = () => {
   const {
@@ -8,10 +22,25 @@ export const RegisterPage = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const [formData, setFormData] = useState(null);
+
+  const { data, error, isLoading, isSuccess, isError } = useQuery({
+    queryKey: ["registerUser", formData],
+    queryFn: () => registerUser(formData),
+    retry: false,
+    onSuccess: (data) => {
+      console.log("Registration successful:", data);
+    },
+    onError: (error) => {
+      console.error("Registration failed:", error);
+    },
+  });
 
   const password = watch("password");
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    setFormData(data);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -41,7 +70,11 @@ export const RegisterPage = () => {
         />
         {errors.re_password && <span>{errors.re_password.message}</span>}
       </div>
-      <button type="submit">Register</button>
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? "Registering..." : "Register"}
+      </button>
+      {isError && <span>Registration failed. Please try again.</span>}
+      {isSuccess && <span>Registration successful!</span>}
     </form>
   );
 };
