@@ -38,8 +38,12 @@ jspm_packages
 .DS_Store
 
 #Excluding build directory
+<<<<<<< HEAD
 public/
 
 #veri important
 **/.env
 .env
+=======
+public/
+>>>>>>> 0e7eb79a2061e289bee0e3373a70d017b54a1fe2
