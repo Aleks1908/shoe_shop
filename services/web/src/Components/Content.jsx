@@ -8,13 +8,14 @@ import { ProductSection } from "./ProductSection/ProductSection";
 import { useMediaQuery } from "react-responsive";
 import { FooterSection } from "./FooterSection/FooterSection";
 import FilteringMenu from "./FilterSection/FilteringMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./content.css";
 
 export const Content = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
 
   const [selectedCategory, setSelectedCategory] = useState("shoes");
+
   const [selectedDescription, setSelectedDescription] =
     useState(`The shoe category refers to a wide range of footwear products designed to be worn 
     on the feet for various purposes. Shoes are essential accessories that provide protection, support, and comfort during daily activities and special 

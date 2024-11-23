@@ -1,8 +1,5 @@
 /* eslint-disable react/prop-types */
-import { AiFillStar } from 'react-icons/ai';
-import { AiOutlineStar } from 'react-icons/ai';
-
-
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import "./product_section.css";
 
@@ -21,7 +18,7 @@ const Product = ({ name, description, img, stars, price, sale }) => {
   return (
     <div className="product_box">
       <div className="product_img">
-        <img src={img} alt="" />
+        <img src={img} alt={name} />
       </div>
       <div className="product_name">
         <p>{name}</p>
@@ -56,15 +53,17 @@ const Product = ({ name, description, img, stars, price, sale }) => {
 
 export default Product;
 
-
-
 const Stars = ({ count }) => {
   const filledStars = Array.from({ length: count }, (_, index) => (
-    <span key={index} className="star filled"><AiFillStar/></span>
+    <span key={index} className="star filled">
+      <AiFillStar />
+    </span>
   ));
 
   const emptyStars = Array.from({ length: 5 - count }, (_, index) => (
-    <span key={index} className="star empty"><AiOutlineStar/></span>
+    <span key={index} className="star empty">
+      <AiOutlineStar />
+    </span>
   ));
 
   return (
@@ -75,31 +74,36 @@ const Stars = ({ count }) => {
   );
 };
 
-
-export const ProductSection = ({ selectedCategory, filteredState, sortedState }) => {
+export const ProductSection = ({
+  selectedCategory,
+  filteredState,
+  sortedState,
+}) => {
   const [products, setProducts] = useState([]);
   const [productsToShow, setProductsToShow] = useState(20);
 
   useEffect(() => {
-    fetch('/SampleData.json')
-      .then((response) => response.json())
-      .then((data) => setProducts(data.products))
-      .catch((error) => console.error('Error fetching data:', error));
+    fetch(`http://localhost:6969/api/v1/items/${selectedCategory}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        return response.json();
+      })
+      .then((data) => setProducts(data))
+      .catch((error) => console.error("Error fetching data:", error));
   }, [selectedCategory, filteredState, sortedState]);
 
-  // Filter products based on their categories and selected color
   const productsWithEffectivePrice = products.map((product) => ({
     ...product,
     effectivePrice: product.sale !== undefined ? product.sale : product.price,
   }));
 
-  // Filter products based on their categories, selected color, and effectivePrice
   let categorisedProducts = productsWithEffectivePrice.filter((product) => {
-
     if (!selectedCategory.includes(product.category)) {
       return false;
     }
-  
+
     if (filteredState.color && product.color !== filteredState.color) {
       return false;
     }
@@ -110,39 +114,46 @@ export const ProductSection = ({ selectedCategory, filteredState, sortedState })
     ) {
       return false;
     }
-  
+
     if (
       filteredState.maxPrice &&
       product.effectivePrice > filteredState.maxPrice
     ) {
       return false;
     }
-  
+
     return true;
   });
-  
 
   let limitedProducts = categorisedProducts.slice(0, productsToShow);
 
   if (sortedState) {
     if (sortedState === "price-asc") {
-      limitedProducts = [...limitedProducts].sort((a, b) => a.effectivePrice - b.effectivePrice);
+      limitedProducts = [...limitedProducts].sort(
+        (a, b) => a.effectivePrice - b.effectivePrice
+      );
     }
     if (sortedState === "price-des") {
-      limitedProducts = [...limitedProducts].sort((a, b) => b.effectivePrice - a.effectivePrice);
+      limitedProducts = [...limitedProducts].sort(
+        (a, b) => b.effectivePrice - a.effectivePrice
+      );
     }
     if (sortedState === "alphabetical") {
-      limitedProducts = [...limitedProducts].sort((a, b) => a.name.localeCompare(b.name));
+      limitedProducts = [...limitedProducts].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
     }
     if (sortedState === "alphabetical-rev") {
-      limitedProducts = [...limitedProducts].sort((a, b) => b.name.localeCompare(a.name));
+      limitedProducts = [...limitedProducts].sort((a, b) =>
+        b.name.localeCompare(a.name)
+      );
     }
   }
 
   const handleLoadMore = () => {
-    setProductsToShow(prevProductsToShow => prevProductsToShow + 5);
+    setProductsToShow((prevProductsToShow) => prevProductsToShow + 5);
   };
-  
+
   if (limitedProducts.length === 0) {
     return (
       <div className="product_section no_products">
@@ -168,7 +179,7 @@ export const ProductSection = ({ selectedCategory, filteredState, sortedState })
       </div>
       {productsToShow < categorisedProducts.length && (
         <div className="load_more">
-          <button  onClick={handleLoadMore}>Load More</button>
+          <button onClick={handleLoadMore}>Load More</button>
         </div>
       )}
     </div>
