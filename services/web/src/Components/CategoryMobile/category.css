@@ -1,0 +1,41 @@
+.category_menu{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.category_option {
+  width: 100px;
+  height: 100px;
+  margin: 13px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  background-color: rgb(244, 244, 244);
+}
+
+.category_option p{
+  text-align: center;
+}
+
+.category_option img{
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+@media only screen and (max-width: 900px){
+  .category_option p{
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 300px){
+  .category_option{
+    width: 50px;
+    height: 50px;
+  }
+  .category_option p{
+    font-size: 11px;
+  }
+}
