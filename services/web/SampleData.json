@@ -1,0 +1,468 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Nike Air Max",
+        "description": "This is the description for Product",
+        "price": 99.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe1.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3,
+        "sale": 89.99
+      },
+      {
+        "id": 2,
+        "name": "Nike Air Force",
+        "description": "This is the description for Product",
+        "price": 99.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe2.png",
+        "category": "shoes",
+        "color": "blue",
+        "stars": 4
+      },{
+        "id": 3,
+        "name": "Nike Air Force",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe3.png",
+        "category": "shoes",
+        "color": "yellow",
+        "stars": 5,
+        "sale": 159.99
+      },{
+        "id": 4,
+        "name": "Adidas sneeker",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe4.png",
+        "category": "shoes",
+        "color": "orange",
+        "stars": 2
+      },{
+        "id": 5,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe4.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 1
+      },{
+        "id": 6,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe4.png",
+        "category": "shoes",
+        "color": "yellow",
+        "stars": 3
+      },{
+        "id": 7,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe2.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 8,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe4.png",
+        "category": "shoes",
+        "color": "orange",
+        "stars": 3
+      },{
+        "id": 9,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe3.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 10,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe4.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 11,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe4.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 12,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe1.png",
+        "category": "shoes",
+        "color": "yellow",
+        "stars": 3
+      },{
+        "id": 13,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe4.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 14,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe3.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 15,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe4.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 16,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe3.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 17,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe1.png",
+        "category": "shoes",
+        "color": "yellow",
+        "stars": 3
+      },{
+        "id": 18,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe2.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 19,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe3.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 20,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe1.png",
+        "category": "shoes",
+        "color": "yellow",
+        "stars": 3
+      },{
+        "id": 21,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe2.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 22,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/shoes/shoe3.png",
+        "category": "shoes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 23,
+        "name": "Product 1",
+        "description": "This is the description for Product",
+        "price": 39.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes1.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3,
+        "sale": 10
+      },{
+        "id": 24,
+        "name": "Product 2",
+        "description": "This is the description for Product",
+        "price": 19.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes2.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 25,
+        "name": "Product 3",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes3.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 26,
+        "name": "Product 4",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes4.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 27,
+        "name": "Product 5",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes2.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 28,
+        "name": "Product 6",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes4.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 29,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes3.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 30,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes1.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 31,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes1.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 32,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes1.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 33,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes1.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 34,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes1.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 35,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/clothes/clothes1.png",
+        "category": "clothes",
+        "color": "red",
+        "stars": 3
+      },{
+        "id": 36,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/accessories/acc1.png",
+        "category": "accessories",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 37,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/accessories/acc2.png",
+        "category": "accessories",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 38,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/accessories/acc3.png",
+        "category": "accessories",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 39,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/accessories/acc4.png",
+        "category": "accessories",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 40,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/hats/hat1.png",
+        "category": "hats",
+        "color": "blue",
+        "stars": 3
+      },{
+        "id": 41,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/hats/hat2.png",
+        "category": "hats",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 42,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/hats/hat3.png",
+        "category": "hats",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 43,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/hats/hat4.png",
+        "category": "hats",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 44,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/limited/limited1.png",
+        "category": "limited",
+        "color": "yellow",
+        "stars": 3
+      },{
+        "id": 45,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/limited/limited2.png",
+        "category": "limited",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 46,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/limited/limited3.png",
+        "category": "limited",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 47,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/limited/limited4.png",
+        "category": "limited",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 48,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/slippers/slipper1.png",
+        "category": "slippers",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 49,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/slippers/slipper2.png",
+        "category": "slippers",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 50,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/slippers/slipper3.png",
+        "category": "slippers",
+        "color": "black",
+        "stars": 3
+      },{
+        "id": 51,
+        "name": "Product",
+        "description": "This is the description for Product",
+        "price": 199.99,
+        "image": "../src/Assets/ProductImg/slippers/slipper4.png",
+        "category": "slippers",
+        "color": "black",
+        "stars": 3
+      }
+    ]
+  }
