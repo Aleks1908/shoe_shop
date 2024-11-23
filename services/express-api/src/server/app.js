@@ -5,6 +5,7 @@ import authRouter from './routes/authRoutes.js';
 import itemRouter from './routes/itemsRoutes.js';
 import favoritesRouter from './routes/favoritesRoutes.js';
 import { swaggerUi, specs } from './swagger.js';
+import cors from "cors";
 
 await connectToDB(); 
 const app = express();
@@ -13,8 +14,9 @@ const appRouter = express.Router();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(requestLoggerMiddleware);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use(cors());
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 //Registration of routes
 app.use("/api/v1", appRouter); 
 appRouter.use("/items", itemRouter);
