@@ -1,30 +1,37 @@
 import { Router } from "express";
+import itemsRepository from "../../database/repositories/itemsRepository.js";
 
 const itemRouter = Router();
 
 
-itemRouter.get('/shoes', (req, res) => {
-    res.send('Route not implemented');
+itemRouter.get('/shoes', async (req, res) => {
+    let shoes = await itemsRepository.getShoes(); 
+    res.send(shoes);
 });
 
-itemRouter.get('/clothes', (req, res) => {
-    res.send('Route not implemented');
+itemRouter.get('/clothes', async (req, res) => {
+    let clothes = await itemsRepository.getClothes();
+    res.send(clothes);
 });
 
-itemRouter.get('/accessories', (req, res) => {
-    res.send('Route not implemented');
+itemRouter.get('/accessories', async (req, res) => {
+    let accessories = await itemsRepository.getAccessories();
+    res.send(accessories);
 });
 
-itemRouter.get('/hats', (req, res) => {
-    res.send('Route not implemented');
+itemRouter.get('/hats', async (req, res) => {
+    let hats = await itemsRepository.getHats();
+    res.send(hats);
 });
 
-itemRouter.get('/slippers', (req, res) => {
-    res.send('Route not implemented');
+itemRouter.get('/slippers', async (req, res) => {
+    let slippers = await itemsRepository.getSlippers();
+    res.send(slippers);
 });
 
-itemRouter.get('/limited', (req, res) => {
-    res.send('Route not implemented');
+itemRouter.get('/limited', async (req, res) => {
+    let limited = await itemsRepository.getLimited();
+    res.send(limited);
 });
 
 
