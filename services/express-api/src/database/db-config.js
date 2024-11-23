@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import {logger} from "../../server/config/logger-config.js";
+import {logger} from "../server/config/logger-config.js";
 
 const connectionString = process.env.ATLAS_URI || "";
 const client = new MongoClient(connectionString);
