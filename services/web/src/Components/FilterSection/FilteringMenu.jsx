@@ -46,8 +46,8 @@ const FilteringMenu = ({ onFilterClick }) => {
   };
 
   const handleResetFilters = () => {
-    setSelectedColor('');
-    setSelectedHexColor('');
+    setSelectedColor("");
+    setSelectedHexColor("");
     setMinPrice(0);
     setMaxPrice(200);
   };
@@ -80,7 +80,6 @@ const FilteringMenu = ({ onFilterClick }) => {
     }
   };
 
-
   const rangeInputMax = 200;
   const priceGap = 1;
 
@@ -99,7 +98,7 @@ const FilteringMenu = ({ onFilterClick }) => {
           <p>Filter by Color</p>
         </div>
         <div className="color_selection">
-        <ColorCircle
+          <ColorCircle
             color="white"
             hexcolor="#b3b3b3"
             onClick={handleColorClick}
