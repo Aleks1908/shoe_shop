@@ -1,0 +1,15 @@
+.plp{
+    display: flex;
+}
+.sorting_position{
+    display: flex;
+}
+.filter_position{
+    width: 12.5%;
+}
+.content_position{
+    width: 87.5%;
+}
+.description_desk{
+    width: 80%;
+}
