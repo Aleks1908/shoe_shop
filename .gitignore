@@ -41,4 +41,5 @@ jspm_packages
 public/
 
 #veri important
-*/.env
+**/.env
+.env
