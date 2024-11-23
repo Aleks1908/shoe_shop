@@ -1,24 +1,23 @@
 import express from 'express';
-import db from "../database/db-config.js"
-import {logger, requestLoggerMiddleware} from './config/logger-config.js';
+import {requestLoggerMiddleware} from './config/logger-config.js';
+import {connectToDB} from '../database/db-config.js';
+import authRouter from './routes/authRoutes.js';
+import itemRouter from './routes/itemsRoutes.js';
+import favoritesRouter from './routes/favoritesRoutes.js';
 
+await connectToDB(); 
 const app = express();
-
+const appRouter = express.Router();
 // Use the logger middleware for all routes
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(requestLoggerMiddleware);
 
-// Simulated routes
-app.get('/', (req, res) => {
-    logger.debug('Handling root route');
-    res.send('Hello World!');
-  });
-  
-app.get('/error', (req, res) => {
-logger.error('Simulated error');
-res.status(500).send('Error occurred');
-});
+//Registration of routes
+app.use("/api/v1", appRouter); 
+appRouter.use("/items", itemRouter);
+appRouter.use("/auth", authRouter);
+appRouter.use("/favorites", favoritesRouter);
 
 
 export {app};
