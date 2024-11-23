@@ -1,37 +1,31 @@
 import { Router } from "express";
-import itemsRepository from "../../database/repositories/itemsRepository.js";
+import itemsHandler from "../handlers/itemHandler.js";
 
 const itemRouter = Router();
 
 
 itemRouter.get('/shoes', async (req, res) => {
-    let shoes = await itemsRepository.getShoes(); 
-    res.send(shoes);
+    res.send(await itemsHandler.fetchItems("shoes"));
 });
 
 itemRouter.get('/clothes', async (req, res) => {
-    let clothes = await itemsRepository.getClothes();
-    res.send(clothes);
+    res.send(await itemsHandler.fetchItems("clothes"));
 });
 
 itemRouter.get('/accessories', async (req, res) => {
-    let accessories = await itemsRepository.getAccessories();
-    res.send(accessories);
+    res.send(await itemsHandler.fetchItems("accessories"));
 });
 
 itemRouter.get('/hats', async (req, res) => {
-    let hats = await itemsRepository.getHats();
-    res.send(hats);
+    res.send(await itemsHandler.fetchItems("hats"));
 });
 
 itemRouter.get('/slippers', async (req, res) => {
-    let slippers = await itemsRepository.getSlippers();
-    res.send(slippers);
+    res.send(await itemsHandler.fetchItems("slippers"));
 });
 
 itemRouter.get('/limited', async (req, res) => {
-    let limited = await itemsRepository.getLimited();
-    res.send(limited);
+    res.send(await itemsHandler.fetchItems("limited"));
 });
 
 
