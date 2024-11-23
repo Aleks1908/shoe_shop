@@ -8,6 +8,7 @@ const connectToDB = async () => {
   const client = new MongoClient(connectionString);
   let conn;
 
+  //TO-DO: Write logic for when the database string is not right
   try {
     logger.debug("Trying to connect...");
     conn = await client.connect();
