@@ -57,6 +57,13 @@ export const NavigationDesktop = ({ onCategoryClick }) => {
             category="limited"
             description="Limited edition items are unique and exclusive products that are produced in restricted quantities, making them highly sought after and prized by collectors and enthusiasts alike. These special creations are meticulously crafted to showcase exceptional quality, design, and attention to detail, setting them apart from their mass-produced counterparts."
           />
+          //todo add a check if there is session //todo pass inside the category
+          the id of the user to directly pass it to the backend
+          <CategoryLink
+            onClick={handleCategoryClick}
+            category="favorites"
+            description="Show favorites"
+          />
           <li className="category_option_desk">
             <a href="/register">REGISTER</a>
           </li>

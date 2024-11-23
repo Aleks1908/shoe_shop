@@ -14,7 +14,6 @@ export const SortSection = ({ onSortClick }) => {
     <div className="sort_section">
       {isMobile && (
         <Fragment>
-          {" "}
           <li className="category_option_desk">
             <a href="/register">REGISTER</a>
           </li>
