@@ -1,28 +1,24 @@
-import { MongoClient } from "mongodb";
-import {logger} from "../server/config/logger-config.js";
-
-let db; 
+import mongoose from "mongoose";
+import { logger } from "../server/config/logger-config.js";
 
 const connectToDB = async () => {
   const connectionString = process.env.ATLAS_URI || "";
-  const client = new MongoClient(connectionString);
-  let conn;
+
+  // Check if the connection string is empty
+  if (!connectionString) {
+    logger.error("Database connection string is missing.");
+    throw new Error("Database connection string is missing.");
+  }
 
   try {
-    logger.debug("Trying to connect...");
-    conn = await client.connect();
-    logger.debug("Connection successful.");
-    db = conn.db("shoe-shop");
-    logger.debug("Pinging Database..."); 
-    await db.command({ping: 1});
-    logger.debug("Pong.");
-  } catch(e) {
-    logger.error(e.toString());
+    logger.debug("Trying to connect to MongoDB with Mongoose...");
+    await mongoose.connect(connectionString);
+    logger.debug("Mongoose connection successful.");
+  } catch (e) {
+    logger.error(`Error connecting to MongoDB: ${e.message}`);
+    throw e;
   }
-}
+};
 
-const getDB = () => {
-  return db; 
-}
-
-export {connectToDB, getDB}
+// No need for `getDB` since Mongoose handles models directly
+export { connectToDB };

@@ -23,5 +23,49 @@ favoritesRouter.delete("/",(req, res) => {
 });
 
 
-
 export default favoritesRouter; 
+
+
+/**
+ * @swagger
+ * tags:
+ *   name: /favorites
+ *   description: API endpoints for managing user favorite items
+ */
+
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Returns a JSON containing all favorite items of a specific user
+ *     tags: 
+ *       - /favorites
+ *     responses:
+ *       200:   
+ *         description: A successful response
+ * 
+ */
+ 
+ /** 
+ * @swagger
+ * /:
+ *   post:
+ *     summary: Returns a JSON containing all favorite items of a specific user
+ *     tags: 
+ *       - /favorites  
+ *     responses:
+ *       200:   
+ *         description: A successful response
+ */
+
+ /**
+ * @swagger
+ * /:
+ *   delete:
+ *     summary: Returns a JSON containing all favorite items of a specific user
+ *     tags: 
+ *       - /favorites
+ *     responses:
+ *       200:   
+ *         description: A successful response
+ */
