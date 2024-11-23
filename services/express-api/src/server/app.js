@@ -1,5 +1,6 @@
 import express from 'express';
-import {logger, requestLoggerMiddleware} from './logger-config.js';
+import db from "../database/db-config.js"
+import {logger, requestLoggerMiddleware} from './config/logger-config.js';
 
 const app = express();
 
