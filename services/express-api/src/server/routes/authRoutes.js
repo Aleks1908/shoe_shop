@@ -13,3 +13,35 @@ authRouter.post('/login', (req, res) => {
 
 
 export default authRouter; 
+
+/**
+ * @swagger
+ * tags:
+ *   name: /auth
+ *   description: API endpoints for authenticating users
+ */
+
+/**
+ * @swagger
+ * /register:
+ *   post:
+ *     summary: API endpoints for authenticating users
+ *     tags: 
+ *       - /auth
+ *     responses:
+ *       200:   
+ *         description: A successful response
+ * 
+ */
+ 
+ /** 
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: API endpoints for authenticating users
+ *     tags: 
+ *       - /auth  
+ *     responses:
+ *       200:   
+ *         description: A successful response
+ */
