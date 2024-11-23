@@ -6,20 +6,20 @@ import { NavigationMobile } from "../Components/Navigation/NavigationMobile/Navi
 import { NavigationDesktop } from "../Components/Navigation/NavigationDesktop/NavigationDesktop";
 import { useNavigate } from "react-router-dom";
 
-const registerUser = async (data) => {
+const loginUser = async (data) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (data.name && data.password) {
-        console.log("User registered:", data);
+        console.log("User logged in:", data);
         resolve(data);
       } else {
-        reject(new Error("Registration failed"));
+        reject(new Error("Logging in failed"));
       }
     }, 1000);
   });
 };
 
-export const RegisterPage = () => {
+export const LoginPage = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
   const navigate = useNavigate();
 
@@ -33,13 +33,13 @@ export const RegisterPage = () => {
   const password = watch("password");
 
   const mutation = useMutation({
-    mutationFn: registerUser,
+    mutationFn: loginUser,
     onSuccess: (data) => {
-      console.log("Registration successful:", data);
+      console.log("Logged in successfuly:", data);
       navigate("/");
     },
     onError: (error) => {
-      console.error("Registration failed:", error);
+      console.error("Login failed:", error);
     },
   });
 
@@ -65,26 +65,11 @@ export const RegisterPage = () => {
           />
           {errors.password && <span>This field is required</span>}
         </div>
-        <div>
-          <label htmlFor="re_password">Re-enter password</label>
-          <input
-            id="re_password"
-            type="password"
-            {...register("re_password", {
-              required: "This field is required",
-              validate: (value) =>
-                value === password || "Passwords do not match",
-            })}
-          />
-          {errors.re_password && <span>{errors.re_password.message}</span>}
-        </div>
         <button type="submit" disabled={mutation.isLoading}>
-          {mutation.isLoading ? "Registering..." : "Register"}
+          {mutation.isLoading ? "Logging in..." : "Login"}
         </button>
-        {mutation.isError && (
-          <span>Registration failed. Please try again.</span>
-        )}
-        {mutation.isSuccess && <span>Registration successful!</span>}
+        {mutation.isError && <span>Login failed. Please try again.</span>}
+        {mutation.isSuccess && <span>Login successful!</span>}
       </form>
     </Fragment>
   );
