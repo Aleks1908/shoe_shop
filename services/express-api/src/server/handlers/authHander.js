@@ -4,14 +4,15 @@ const authHandler = (function(){
     return{
         //build the response
         registerUserHandler: async (user) => {
-            
+
             let response = { body:{} };
             let result; 
 
             try{
                 result = await authController.registerUserController(user);
+                const {password, ...filteredResult} = result._doc; 
                 response.status = 201;
-                response.body.message = result; 
+                response.body.message = filteredResult; 
                 response.success = true; 
 
             }catch(e){
