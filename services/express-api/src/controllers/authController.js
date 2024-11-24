@@ -26,6 +26,8 @@ const authController = (function(){
                 throw Error("Incorrect Password.");
             }
 
+            user._doc.sessionID = hashManager.generateSessionToken(user);
+            
             return user; 
         }
     };

@@ -8,6 +8,10 @@ const usersRepository = (function () {
 
     userExists: async (user_name) => {
       return await userModel.findOne({user_name});
+    },
+    
+    findById: async (_id) => {
+      return await userModel.findOne({_id});
     }
   };
 })();

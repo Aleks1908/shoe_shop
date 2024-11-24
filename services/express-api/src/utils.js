@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const hashManager = (function () {
     
@@ -25,9 +26,21 @@ const hashManager = (function () {
         }
     };
 
+
+    const generateSessionToken = (user) => {
+        let payload = {
+            id: user._doc._id,
+        };
+
+        return jwt.sign(payload, process.env.SECRET_ACCESS_TOKEN, {
+            expiresIn: '60m',
+        });
+    }
+
     return {
         generateHash,
         hashMatch,
+        generateSessionToken
     };
 })();
 

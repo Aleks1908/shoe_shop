@@ -38,7 +38,7 @@ const authHandler = (function(){
             try{
                 result = await authController.loginUserController(user);
                 const {password, ...filteredResult} = result._doc; 
-                response.status = 201;
+                response.status = 200;
                 response.body.message = filteredResult; 
                 response.success = true; 
 
