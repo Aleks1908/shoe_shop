@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 
 const hashManager = (function () {
+    
     const saltRounds = 10;
 
     // Generate a hash from plain text and return it

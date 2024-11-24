@@ -5,7 +5,8 @@ const authRouter = Router();
 
 
 authRouter.post('/register', async (req, res) => {
-    res.send(await authHandler.registerUserHandler(req.body));
+    let response = await authHandler.registerUserHandler(req.body);
+    res.send(response).status(response.status);
 });
 
 authRouter.post('/login', (req, res) => {
