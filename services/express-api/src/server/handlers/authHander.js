@@ -29,6 +29,35 @@ const authHandler = (function(){
                 return response; 
             }
             
+        },
+
+        loginUserHandler: async (user) => {
+            let response = { body:{} };
+            let result; 
+
+            try{
+                result = await authController.loginUserController(user);
+                const {password, ...filteredResult} = result._doc; 
+                response.status = 201;
+                response.body.message = filteredResult; 
+                response.success = true; 
+
+            }catch(e){
+                response.success = false; 
+                if(e.message == "User does not exist."){
+                    response.status = 401; 
+                    response.body.message = e.message;
+                }else if(e.message == "Incorrect Password."){
+                    response.status = 401; 
+                    response.body.message = e.message;
+                }else{
+                    response.status = 500; 
+                    response.body.message = "An unexpected error occured.";
+                }
+                
+            }finally{
+                return response; 
+            }
         }
     };
 })();
