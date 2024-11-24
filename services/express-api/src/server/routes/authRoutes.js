@@ -1,10 +1,11 @@
 import { Router } from "express";
+import authHandler from "../handlers/authHander.js";
 
 const authRouter = Router();
 
 
-authRouter.post('/register', (req, res) => {
-    res.send('Route not implemented');
+authRouter.post('/register', async (req, res) => {
+    res.send(await authHandler.registerUserHandler(req.body));
 });
 
 authRouter.post('/login', (req, res) => {
