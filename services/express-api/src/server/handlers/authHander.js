@@ -58,6 +58,31 @@ const authHandler = (function(){
             }finally{
                 return response; 
             }
+        }, 
+
+        logoutUserHandler: async (req) => {
+            let response = { body:{} };
+            let result; 
+
+            try{
+                result = await authController.logoutUserController(req);
+                response.status = result.status;
+                response.body.message = "Logged out"; 
+                response.success = true;
+
+            }catch(e){
+                response.success = false; 
+                if(e.message == "204"){
+                    response.status = 204; 
+                    response.body.message = "Could not find session ID.";
+                }else{
+                    response.status = 500; 
+                    response.body.message = "An unexpected error occured.";
+                }
+                
+            }finally{
+                return response; 
+            }
         }
     };
 })();

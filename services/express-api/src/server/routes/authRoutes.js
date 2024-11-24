@@ -1,4 +1,4 @@
-import { json, Router } from "express";
+import { Router } from "express";
 import authHandler from "../handlers/authHander.js";
 import Validate from "../middleware/validate.js";
 
@@ -24,6 +24,19 @@ authRouter.post('/login', async (req, res) => {
     res.cookie("SessionID", sessionID, options);
     res.send(response).status(response.status);
     res.end();
+});
+
+authRouter.post("/logout", async (req, res) => {
+    
+    let response = await authHandler.logoutUserHandler(req);
+    
+    if (response.success) {
+        res.setHeader('Clear-Site-Data', '"cookies"');
+        return res.send(response); // Ends the response here
+    }
+    
+    res.send(response); // Handles the case where success is false
+    
 });
 
 
@@ -52,6 +65,18 @@ export default authRouter;
  /** 
  * @swagger
  * /login:
+ *   post:
+ *     summary: API endpoints for authenticating users
+ *     tags: 
+ *       - /auth  
+ *     responses:
+ *       200:   
+ *         description: A successful response
+ */
+
+  /** 
+ * @swagger
+ * /logout:
  *   post:
  *     summary: API endpoints for authenticating users
  *     tags: 
