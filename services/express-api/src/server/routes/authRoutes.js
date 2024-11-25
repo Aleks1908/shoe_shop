@@ -12,16 +12,21 @@ authRouter.post('/register', async (req, res) => {
 });
 
 authRouter.post('/login', async (req, res) => {
+
     let response = await authHandler.loginUserHandler(req.body);
-    const {sessionID, ...jsonResponse} = response.body.message; 
-    response.body.message = jsonResponse;
-    let options = {
-        maxAge: 20 * 60 * 1000, // would expire in 20minutes
-        httpOnly: true, // The cookie is only accessible by the web server
-        secure: true,
-        sameSite: true,
-    };
-    res.cookie("SessionID", sessionID, options);
+
+    if(typeof response.body.message === 'object'){
+        const {sessionID, ...jsonResponse} = response.body.message; 
+        response.body.message = jsonResponse;
+        let options = {
+            maxAge: 20 * 60 * 1000, // would expire in 20minutes
+            httpOnly: true, // The cookie is only accessible by the web server
+            secure: true,
+            sameSite: true,
+        };
+        res.cookie("SessionID", sessionID, options);
+    }
+    
     res.send(response).status(response.status);
     res.end();
 });
