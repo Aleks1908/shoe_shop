@@ -27,17 +27,17 @@ export default favoritesRouter;
 /**
  * @swagger
  * tags:
- *   name: /favorites
+ *   name: Favorites
  *   description: API endpoints for managing user favorite items
  */
 
 /**
  * @swagger
- * /:
+ * /favorites:
  *   get:
  *     summary: Returns a JSON containing all favorite items of a specific user
  *     tags: 
- *       - /favorites
+ *       - Favorites
  *     responses:
  *       200:   
  *         description: A successful response
@@ -46,11 +46,11 @@ export default favoritesRouter;
  
  /** 
  * @swagger
- * /:
+ * /favorites:
  *   post:
- *     summary: Returns a JSON containing all favorite items of a specific user
+ *     summary: Adds a favorite item for a specific user
  *     tags: 
- *       - /favorites  
+ *       - Favorites  
  *     responses:
  *       200:   
  *         description: A successful response
@@ -58,11 +58,11 @@ export default favoritesRouter;
 
  /**
  * @swagger
- * /:
+ * /favorites:
  *   delete:
- *     summary: Returns a JSON containing all favorite items of a specific user
+ *     summary: Deletes a favorite item for a specific user
  *     tags: 
- *       - /favorites
+ *       - Favorites
  *     responses:
  *       200:   
  *         description: A successful response

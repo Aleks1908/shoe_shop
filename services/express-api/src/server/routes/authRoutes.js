@@ -50,43 +50,121 @@ export default authRouter;
 /**
  * @swagger
  * tags:
- *   name: /auth
+ *   name: Authentication
  *   description: API endpoints for authenticating users
  */
 
 /**
  * @swagger
- * /register:
+ * /auth/register:
  *   post:
- *     summary: API endpoints for authenticating users
+ *     summary: The endpoint for registering the user
  *     tags: 
- *       - /auth
+ *       - Authentication
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               user_name:
+ *                 type: string
+ *                 example: "test"
+ *               password:
+ *                 type: string
+ *                 example: "test"
  *     responses:
- *       200:   
- *         description: A successful response
- * 
- */
- 
- /** 
- * @swagger
- * /login:
- *   post:
- *     summary: API endpoints for authenticating users
- *     tags: 
- *       - /auth  
- *     responses:
- *       200:   
- *         description: A successful response
+ *       201:
+ *         description: User successfully registered
+ *         content:
+ *           application/json:
+ *             example:
+ *               body:
+ *                 message:
+ *                   user_name: "test"
+ *                   favorites: []
+ *                   _id: "67485e58dea2b1410dddaebf"
+ *                   __v: 0
+ *               status: 201
+ *               success: true
  */
 
-  /** 
+ 
+/**
  * @swagger
- * /logout:
+ * /auth/login:
  *   post:
- *     summary: API endpoints for authenticating users
+ *     summary: The endpoint for logging the user in
  *     tags: 
- *       - /auth  
+ *       - Authentication
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               user_name:
+ *                 type: string
+ *                 example: "test"
+ *               password:
+ *                 type: string
+ *                 example: "test"
  *     responses:
- *       200:   
+ *       200:
  *         description: A successful response
+ *         content:
+ *           application/json:
+ *             example:
+ *               body:
+ *                 message:
+ *                   _id: "67485e58dea2b1410dddaebf"
+ *                   user_name: "test"
+ *                   favorites: []
+ *                   __v: 0
+ *               status: 200
+ *               success: true
+ *         headers:
+ *           Set-Cookie:
+ *             description: Session ID in the form of a JWT token
+ *             schema:
+ *               type: string
+ *               example: "SessionID=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDg1ZTU4ZGVhMmIxNDEwZGRkYWViZiIsImlhdCI6MTczMjc5NjE0MywiZXhwIjoxNzMyNzk5NzQzfQ.c_XAAsZPvVNpIbnR4eK-deYNtO2j8Ydf31RtP1KcM7w"
  */
+
+
+/**
+ * @swagger
+ * /auth/logout:
+ *   post:
+ *     summary: The endpoint for logging the user out
+ *     tags: 
+ *       - Authentication
+ *     requestBody:
+ *       required: false
+ *     parameters:
+ *       - in: header
+ *         name: Cookie
+ *         required: true
+ *         schema:
+ *           type: string
+ *           example: "SessionID=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDg1ZTU4ZGVhMmIxNDEwZGRkYWViZiIsImlhdCI6MTczMjc5NjE0MywiZXhwIjoxNzMyNzk5NzQzfQ.c_XAAsZPvVNpIbnR4eK-deYNtO2j8Ydf31RtP1KcM7w"
+ *     responses:
+ *       200:
+ *         description: A successful logout response
+ *         content:
+ *           application/json:
+ *             example:
+ *               body:
+ *                 message: "Logged out"
+ *               status: 200
+ *               success: true
+ *         headers:
+ *           Clear-Site-Data:
+ *             description: Clears the cookies from the browser after successful logout
+ *             schema:
+ *               type: string
+ *               example: '"cookies"'
+ */
+
