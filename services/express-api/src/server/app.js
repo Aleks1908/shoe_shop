@@ -14,7 +14,10 @@ const appRouter = express.Router();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(requestLoggerMiddleware);
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost.com', //Client website
+    credentials: true, // Allow cookies
+}));
 
 //Registration of routes
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
