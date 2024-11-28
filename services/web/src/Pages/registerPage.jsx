@@ -7,16 +7,20 @@ import { NavigationDesktop } from "../Components/Navigation/NavigationDesktop/Na
 import { useNavigate } from "react-router-dom";
 
 const registerUser = async (data) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (data.name && data.password) {
-        console.log("User registered:", data);
-        resolve(data);
-      } else {
-        reject(new Error("Registration failed"));
-      }
-    }, 1000);
+  const response = await fetch("http://localhost:6969/api/v1/auth/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
   });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Registration failed");
+  }
+
+  return response.json();
 };
 
 export const RegisterPage = () => {
@@ -39,7 +43,7 @@ export const RegisterPage = () => {
       navigate("/");
     },
     onError: (error) => {
-      console.error("Registration failed:", error);
+      console.error("Registration failed:", error.message);
     },
   });
 
@@ -52,9 +56,12 @@ export const RegisterPage = () => {
       {isMobile ? <NavigationMobile /> : <NavigationDesktop />}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="name">Name</label>
-          <input id="name" {...register("name", { required: true })} />
-          {errors.name && <span>This field is required</span>}
+          <label htmlFor="user_name">Name</label>
+          <input
+            id="user_name"
+            {...register("user_name", { required: true })}
+          />
+          {errors.user_name && <span>This field is required</span>}
         </div>
         <div>
           <label htmlFor="password">Password</label>
