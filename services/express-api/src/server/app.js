@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(requestLoggerMiddleware);
 app.use(cors({
-    origin: 'http://localhost.com', //Client website
+    origin: "http://localhost:5173/", //Client website
     credentials: true, // Allow cookies
 }));
 
