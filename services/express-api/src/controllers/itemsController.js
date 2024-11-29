@@ -6,6 +6,7 @@ const itemsController = (function(){
             let items; 
             if(!category){
                 items = await itemsRepository.getAllItems();
+                return items; 
             }
             items = await itemsRepository.getItemsByCategory(category);
             return items; 
