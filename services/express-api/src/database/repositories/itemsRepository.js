@@ -1,4 +1,5 @@
 import ItemModel from "../models/itemsModel.js"; // Import the Mongoose model
+import mongoose from "mongoose";
 import { logger } from "../../server/config/logger-config.js";
 
 const itemsRepository = (function () {
@@ -22,6 +23,17 @@ const itemsRepository = (function () {
         throw error;
       }
     },
+
+    getAllSpecifiedItems: async (favoriteItemsIDs) => {
+      try{
+        const ObjIDs = favoriteItemsIDs.map((el) => new mongoose.Types.ObjectId(el));
+        return await ItemModel.find({'_id': {$in: ObjIDs}});
+      } catch (error) {
+        logger.error(`Error fetching the favorite items`, error.toString());
+        throw error
+      }
+      
+    }
   };
 })();
 
