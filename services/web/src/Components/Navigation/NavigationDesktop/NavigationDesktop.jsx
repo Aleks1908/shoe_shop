@@ -15,19 +15,8 @@ const CategoryLink = ({ category, description, onClick }) => (
   </li>
 );
 
-export const NavigationDesktop = ({ onCategoryClick }) => {
-  const [sessionID, setSessionID] = useState(null);
-
-  useEffect(() => {
-    const sessionCookie = getCookie("SessionID");
-    console.log(sessionCookie);
-    console.log("All Cookies:", document.cookie);
-    setSessionID(sessionCookie);
-  }, []);
-
+export const NavigationDesktop = ({ onCategoryClick, sessionID }) => {
   const handleCategoryClick = (category, description) => {
-    // Include sessionID if needed
-    console.log("SessionID:", sessionID);
     onCategoryClick(category, description);
   };
 
@@ -86,7 +75,13 @@ export const NavigationDesktop = ({ onCategoryClick }) => {
                 description="Show favorites"
               />
               <li className="category_option_desk">
-                <a href="" onClick={() => logoutUser(sessionID)}>
+                <a
+                  href=""
+                  onClick={() => {
+                    console.log(sessionID);
+                    logoutUser(sessionID);
+                  }}
+                >
                   LOGOUT
                 </a>
               </li>

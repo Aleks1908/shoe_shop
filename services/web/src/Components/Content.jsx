@@ -10,6 +10,7 @@ import { FooterSection } from "./FooterSection/FooterSection";
 import FilteringMenu from "./FilterSection/FilteringMenu";
 import { useEffect, useState } from "react";
 import "./content.css";
+import { getCookie } from "./Navigation/utils";
 
 export const Content = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
@@ -44,10 +45,21 @@ export const Content = () => {
     setSortedState(sort);
   };
 
+  const [sessionID, setSessionID] = useState(null);
+
+  useEffect(() => {
+    const sessionCookie = getCookie("SessionID");
+    console.log(sessionCookie);
+    setSessionID(sessionCookie);
+  }, []);
+
   if (!isMobile) {
     return (
       <div>
-        <NavigationDesktop onCategoryClick={handleCategoryClick} />
+        <NavigationDesktop
+          onCategoryClick={handleCategoryClick}
+          sessionID={sessionID}
+        />
         <BannerSection />
 
         <div className="plp">
@@ -67,6 +79,7 @@ export const Content = () => {
                 selectedCategory={selectedCategory}
                 filteredState={filteredState}
                 sortedState={sortedState}
+                sessionID={sessionID}
               />
             </div>
           </div>
@@ -80,6 +93,7 @@ export const Content = () => {
         <NavigationMobile
           handleFilterClick={handleFilterClick}
           handleSortClick={handleSortClick}
+          sessionID={sessionID}
         />
         <BannerSection />
 
@@ -92,6 +106,7 @@ export const Content = () => {
           selectedCategory={selectedCategory}
           filteredState={filteredState}
           sortedState={sortedState}
+          sessionID={sessionID}
         />
         <FooterSection />
       </div>

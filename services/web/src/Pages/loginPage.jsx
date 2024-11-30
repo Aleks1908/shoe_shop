@@ -40,7 +40,6 @@ export const LoginPage = () => {
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      console.log("Logged in successfuly:", data);
       navigate("/");
     },
     onError: (error) => {

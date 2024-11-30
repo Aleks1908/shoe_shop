@@ -2,28 +2,13 @@
 import { Fragment } from "react";
 import { useMediaQuery } from "react-responsive";
 import "./sort_section.css";
-import { logoutUser } from "../Navigation/utils";
-import { useState, useEffect } from "react";
-import { getCookie } from "../Navigation/utils";
 
-export const SortSection = ({ onSortClick }) => {
+export const SortSection = ({ onSortClick, sessionID = null }) => {
   const handleSortChange = (event) => {
     onSortClick(event.target.value);
   };
 
   const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
-  const [sessionID, setSessionID] = useState(null);
-
-  useEffect(() => {
-    const sessionCookie = getCookie("SessionID");
-    setSessionID(sessionCookie);
-  }, []);
-
-  const handleCategoryClick = (category, description) => {
-    // Include sessionID if needed
-    console.log("SessionID:", sessionID);
-    onCategoryClick(category, description);
-  };
 
   return (
     <div className="sort_section">

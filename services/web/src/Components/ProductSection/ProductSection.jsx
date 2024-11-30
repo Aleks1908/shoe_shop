@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import "./product_section.css";
+import { getCookie } from "../Navigation/utils";
 
-const Product = ({ name, description, img, stars, price, sale }) => {
+const Product = ({ name, description, img, stars, price, sale, sessionID }) => {
   const [showNotification, setShowNotification] = useState(false);
   const hasSale = typeof sale === "number" && sale < price;
 
@@ -38,14 +39,18 @@ const Product = ({ name, description, img, stars, price, sale }) => {
         )}
         {!hasSale && <p>${price}</p>}
       </div>
-      <div className="buy_btn">
-        <a onClick={handleAddToCart}>Add to Cart</a>
-      </div>
-      {showNotification && (
-        <div className="notification">
-          Item added to cart!
-          <a onClick={dismissNotification}>Dismiss</a>
-        </div>
+      {sessionID && (
+        <Fragment>
+          <div className="buy_btn">
+            <a onClick={handleAddToCart}>Add to Cart</a>
+          </div>
+          {showNotification && (
+            <div className="notification">
+              Item added to cart!
+              <a onClick={dismissNotification}>Dismiss</a>
+            </div>
+          )}
+        </Fragment>
       )}
     </div>
   );
@@ -78,6 +83,7 @@ export const ProductSection = ({
   selectedCategory,
   filteredState,
   sortedState,
+  sessionID,
 }) => {
   const [products, setProducts] = useState([]);
   const [productsToShow, setProductsToShow] = useState(20);
@@ -162,6 +168,8 @@ export const ProductSection = ({
     );
   }
 
+  console.log(sessionID);
+
   return (
     <div className="product_section">
       <div className="product_grid">
@@ -174,6 +182,7 @@ export const ProductSection = ({
             stars={product.stars}
             price={product.price}
             sale={product.sale}
+            sessionID={sessionID}
           />
         ))}
       </div>

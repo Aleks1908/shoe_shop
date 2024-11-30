@@ -7,13 +7,15 @@ import { FiMenu } from "react-icons/fi";
 import FilteringMenu from "../../FilterSection/FilteringMenu";
 import { SortSection } from "../../SortSection/SortSection";
 import { useLocation } from "react-router-dom";
-import { getCookie } from "../utils";
 
-export const NavigationMobile = ({ handleFilterClick, handleSortClick }) => {
+export const NavigationMobile = ({
+  handleFilterClick,
+  handleSortClick,
+  sessionID,
+}) => {
   const [filterClass, setFilterClass] = useState("filter-not-visible");
   const [sortClass, setSortClass] = useState("sort-not-visible");
   const location = useLocation();
-  const [sessionID, setSessionID] = useState(null);
 
   const openFilter = () => {
     if (filterClass === "filter-visible") {
@@ -67,7 +69,7 @@ export const NavigationMobile = ({ handleFilterClick, handleSortClick }) => {
           </div>
         )}
         <div className={sortClass}>
-          <SortSection onSortClick={handleSortClick} />
+          <SortSection onSortClick={handleSortClick} sessionID={sessionID} />
         </div>
       </div>
     </div>
