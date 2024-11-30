@@ -21,7 +21,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/api/v1", appRouter); 
 appRouter.use("/items", itemRouter);
 appRouter.use("/auth", authRouter);
-appRouter.use("/favorites", favoritesRouter);
+appRouter.use("/items/favorites", favoritesRouter);
 
 
 export {app};
