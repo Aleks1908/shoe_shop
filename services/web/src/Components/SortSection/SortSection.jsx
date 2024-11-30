@@ -9,12 +9,11 @@ export const SortSection = ({ onSortClick, sessionID = null }) => {
   };
 
   const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
-
   return (
     <div className="sort_section">
       {isMobile && (
         <Fragment>
-          {sessionID ? (
+          {!sessionID ? (
             <Fragment>
               {" "}
               <li className="category_option_desk">

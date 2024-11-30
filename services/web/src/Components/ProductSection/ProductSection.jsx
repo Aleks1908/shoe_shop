@@ -168,8 +168,6 @@ export const ProductSection = ({
     );
   }
 
-  console.log(sessionID);
-
   return (
     <div className="product_section">
       <div className="product_grid">

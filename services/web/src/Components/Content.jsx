@@ -49,7 +49,6 @@ export const Content = () => {
 
   useEffect(() => {
     const sessionCookie = getCookie("SessionID");
-    console.log(sessionCookie);
     setSessionID(sessionCookie);
   }, []);
 
