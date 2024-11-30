@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../../../Assets/logo.png";
 import "./navigation_mobile.css";
 import { AiOutlineFilter } from "react-icons/ai";
@@ -7,13 +7,13 @@ import { FiMenu } from "react-icons/fi";
 import FilteringMenu from "../../FilterSection/FilteringMenu";
 import { SortSection } from "../../SortSection/SortSection";
 import { useLocation } from "react-router-dom";
+import { getCookie } from "../utils";
 
 export const NavigationMobile = ({ handleFilterClick, handleSortClick }) => {
   const [filterClass, setFilterClass] = useState("filter-not-visible");
   const [sortClass, setSortClass] = useState("sort-not-visible");
   const location = useLocation();
-
-  console.log(location);
+  const [sessionID, setSessionID] = useState(null);
 
   const openFilter = () => {
     if (filterClass === "filter-visible") {
@@ -43,8 +43,9 @@ export const NavigationMobile = ({ handleFilterClick, handleSortClick }) => {
               <AiOutlineFilter />
             </div>
           ) : (
-            <div className="filterIcon"></div>
+            <div className="filterIcon" />
           )}
+
           <div className="title">
             <a href="/">
               <img src={logo} alt="" className="logo" />
@@ -56,7 +57,7 @@ export const NavigationMobile = ({ handleFilterClick, handleSortClick }) => {
               <FiMenu />
             </div>
           ) : (
-            <div className="filterIcon"></div>
+            <div className="filterIcon" />
           )}
         </div>
 

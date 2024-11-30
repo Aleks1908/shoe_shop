@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import "./navigation_desktop.css";
 import logo from "../../../Assets/logo.png";
-
+import { useEffect } from "react";
+import { useState } from "react";
+import { getCookie, logoutUser } from "../utils";
 //todo add check if session to not show login register and show logout
 
 const CategoryLink = ({ category, description, onClick }) => (
@@ -14,7 +16,18 @@ const CategoryLink = ({ category, description, onClick }) => (
 );
 
 export const NavigationDesktop = ({ onCategoryClick }) => {
+  const [sessionID, setSessionID] = useState(null);
+
+  useEffect(() => {
+    const sessionCookie = getCookie("SessionID");
+    console.log(sessionCookie);
+    console.log("All Cookies:", document.cookie);
+    setSessionID(sessionCookie);
+  }, []);
+
   const handleCategoryClick = (category, description) => {
+    // Include sessionID if needed
+    console.log("SessionID:", sessionID);
     onCategoryClick(category, description);
   };
 
@@ -57,19 +70,37 @@ export const NavigationDesktop = ({ onCategoryClick }) => {
             category="limited"
             description="Limited edition items are unique and exclusive products that are produced in restricted quantities, making them highly sought after and prized by collectors and enthusiasts alike. These special creations are meticulously crafted to showcase exceptional quality, design, and attention to detail, setting them apart from their mass-produced counterparts."
           />
-          //todo add a check if there is session //todo pass inside the category
-          the id of the user to directly pass it to the backend
+          {/* todo add a check if there is session todo pass inside the category */}
+          {/* the id of the user to directly pass it to the backend */}
           <CategoryLink
             onClick={handleCategoryClick}
             category="favorites"
             description="Show favorites"
           />
-          <li className="category_option_desk">
-            <a href="/register">REGISTER</a>
-          </li>
-          <li className="category_option_desk">
-            <a href="/login">LOGIN</a>
-          </li>
+          {/* Other CategoryLink components */}
+          {sessionID ? (
+            <>
+              <CategoryLink
+                onClick={handleCategoryClick}
+                category="favorites"
+                description="Show favorites"
+              />
+              <li className="category_option_desk">
+                <a href="" onClick={() => logoutUser(sessionID)}>
+                  LOGOUT
+                </a>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="category_option_desk">
+                <a href="/register">REGISTER</a>
+              </li>
+              <li className="category_option_desk">
+                <a href="/login">LOGIN</a>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>
