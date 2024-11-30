@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node ./bin/www",
-    "watch": "nodemon ./bin/www"
+    "watch": "nodemon ./bin/www",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js "
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -24,5 +25,9 @@
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mockingoose": "^2.16.2"
   }
 }
