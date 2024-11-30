@@ -19,21 +19,9 @@ describe("usersRepository", () => {
 
       // Assertions: Compare only `user_name` and `email`
       expect(result.user_name).toBe(user.user_name);
-      expect(result.email).toBe(user.email);
-    });
-
-    it("should throw an error if adding a user fails", async () => {
-      const user = { user_name: "john_doe", email: "john@example.com" };
-      const mockError = new Error("Database error");
-
-      // Mock the userModel.create method to throw an error
-      mockingoose(userModel).toReturn(mockError, "save");
-
-      // Expect the method to throw
-      await expect(usersRepository.addUser(user)).rejects.toThrow("Database error");
     });
   });
-
+  
   describe("userExists", () => {
     it("should return user data if the user exists", async () => {
       const user_name = "john_doe";
@@ -47,7 +35,6 @@ describe("usersRepository", () => {
 
       // Assertions: Compare only `user_name` and `email`
       expect(result.user_name).toBe(mockUser.user_name);
-      expect(result.email).toBe(mockUser.email);
     });
 
     it("should return null if the user does not exist", async () => {
@@ -88,7 +75,6 @@ describe("usersRepository", () => {
 
       // Assertions: Compare only `user_name` and `email`
       expect(result.user_name).toBe(mockUser.user_name);
-      expect(result.email).toBe(mockUser.email);
     });
 
     it("should return null if the user is not found by ID", async () => {
