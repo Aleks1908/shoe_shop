@@ -2,14 +2,38 @@
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Fragment, useEffect, useState } from "react";
 import "./product_section.css";
-import { getCookie } from "../Navigation/utils";
 
-const Product = ({ name, description, img, stars, price, sale, sessionID }) => {
+const addToFavorites = async (data, sessionId) => {
+  const response = await fetch("http://localhost:6969/api/v1/items/favorites", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: `SessionID=${sessionId}`,
+    },
+    body: JSON.stringify(data),
+    credentials: "include",
+  });
+
+  return response.json();
+};
+
+const Product = ({
+  name,
+  description,
+  img,
+  stars,
+  price,
+  sale,
+  sessionID,
+  productID,
+}) => {
   const [showNotification, setShowNotification] = useState(false);
   const hasSale = typeof sale === "number" && sale < price;
 
   const handleAddToCart = () => {
     setShowNotification(true);
+    const data = { item_id: productID };
+    addToFavorites(data, sessionID);
   };
 
   const dismissNotification = () => {
@@ -89,16 +113,37 @@ export const ProductSection = ({
   const [productsToShow, setProductsToShow] = useState(20);
 
   useEffect(() => {
-    fetch(`http://localhost:6969/api/v1/items/${selectedCategory}`)
-      .then((response) => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:6969/api/v1/items/${selectedCategory}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Cookie:
+                selectedCategory === "favorites"
+                  ? `SessionID=${sessionID}`
+                  : "same-origin",
+            },
+            credentials: "include",
+          }
+        );
+
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
-        return response.json();
-      })
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, [selectedCategory, filteredState, sortedState]);
+
+        const data = await response.json();
+
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [selectedCategory]);
 
   const productsWithEffectivePrice = products.map((product) => ({
     ...product,
@@ -106,10 +151,6 @@ export const ProductSection = ({
   }));
 
   let categorisedProducts = productsWithEffectivePrice.filter((product) => {
-    if (!selectedCategory.includes(product.category)) {
-      return false;
-    }
-
     if (filteredState.color && product.color !== filteredState.color) {
       return false;
     }
@@ -173,7 +214,7 @@ export const ProductSection = ({
       <div className="product_grid">
         {limitedProducts.map((product) => (
           <Product
-            key={product.id}
+            key={product._id}
             name={product.name}
             description={product.description}
             img={product.image}
@@ -181,6 +222,7 @@ export const ProductSection = ({
             price={product.price}
             sale={product.sale}
             sessionID={sessionID}
+            productID={product._id}
           />
         ))}
       </div>

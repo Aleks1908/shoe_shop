@@ -78,7 +78,6 @@ export const NavigationDesktop = ({ onCategoryClick, sessionID }) => {
                 <a
                   href=""
                   onClick={() => {
-                    console.log(sessionID);
                     logoutUser(sessionID);
                   }}
                 >

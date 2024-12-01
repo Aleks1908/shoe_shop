@@ -17,6 +17,7 @@ const CategoryIcon = ({ img, category, description, onClick }) => (
   </div>
 );
 
+//sessionid
 export const Category = ({ onCategoryClick }) => {
   const handleCategoryClick = (category, description) => {
     onCategoryClick(category, description);
