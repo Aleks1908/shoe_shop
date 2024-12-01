@@ -17,8 +17,7 @@ const CategoryIcon = ({ img, category, description, onClick }) => (
   </div>
 );
 
-//sessionid
-export const Category = ({ onCategoryClick }) => {
+export const Category = ({ onCategoryClick, sessionID }) => {
   const handleCategoryClick = (category, description) => {
     onCategoryClick(category, description);
   };
@@ -61,12 +60,14 @@ export const Category = ({ onCategoryClick }) => {
         category="limited"
         description="Limited edition items are unique and exclusive products that are produced in restricted quantities, making them highly sought after and prized by collectors and enthusiasts alike. These special creations are meticulously crafted to showcase exceptional quality, design, and attention to detail, setting them apart from their mass-produced counterparts."
       />
-      <CategoryIcon
-        onClick={handleCategoryClick}
-        img={limited}
-        category="favorites"
-        description="This section shows items that you have favorited"
-      />
+      {sessionID && (
+        <CategoryIcon
+          onClick={handleCategoryClick}
+          img={limited}
+          category="favorites"
+          description="This section shows items that you have favorited"
+        />
+      )}
     </div>
   );
 };

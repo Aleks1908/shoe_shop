@@ -96,7 +96,7 @@ export const Content = () => {
         />
         <BannerSection />
 
-        <Category onCategoryClick={handleCategoryClick} />
+        <Category onCategoryClick={handleCategoryClick} sessionID={sessionID} />
         <DescriptionSection
           selectedDescription={selectedDescription}
           selectedCategory={selectedCategory}

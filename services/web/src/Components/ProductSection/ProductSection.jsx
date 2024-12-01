@@ -17,6 +17,20 @@ const addToFavorites = async (data, sessionId) => {
   return response.json();
 };
 
+const removeFromFavorites = async (data, sessionId) => {
+  const response = await fetch("http://localhost:6969/api/v1/items/favorites", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: `SessionID=${sessionId}`,
+    },
+    body: JSON.stringify(data),
+    credentials: "include",
+  });
+
+  return response.json();
+};
+
 const Product = ({
   name,
   description,
@@ -26,6 +40,8 @@ const Product = ({
   sale,
   sessionID,
   productID,
+  selectedCategory,
+  removeProductFromList,
 }) => {
   const [showNotification, setShowNotification] = useState(false);
   const hasSale = typeof sale === "number" && sale < price;
@@ -34,6 +50,13 @@ const Product = ({
     setShowNotification(true);
     const data = { item_id: productID };
     addToFavorites(data, sessionID);
+  };
+
+  const handleRemoveFromCart = async () => {
+    setShowNotification(true);
+    const data = { item_id: productID };
+    await removeFromFavorites(data, sessionID);
+    removeProductFromList(productID); // Update the state
   };
 
   const dismissNotification = () => {
@@ -65,9 +88,15 @@ const Product = ({
       </div>
       {sessionID && (
         <Fragment>
-          <div className="buy_btn">
-            <a onClick={handleAddToCart}>Add to Cart</a>
-          </div>
+          {selectedCategory === "favorites" ? (
+            <div className="buy_btn">
+              <a onClick={handleRemoveFromCart}>Remove from Cart</a>
+            </div>
+          ) : (
+            <div className="buy_btn">
+              <a onClick={handleAddToCart}>Add to Cart</a>
+            </div>
+          )}
           {showNotification && (
             <div className="notification">
               Item added to cart!
@@ -144,6 +173,12 @@ export const ProductSection = ({
 
     fetchProducts();
   }, [selectedCategory]);
+
+  const removeProductFromList = (productID) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product._id !== productID)
+    );
+  };
 
   const productsWithEffectivePrice = products.map((product) => ({
     ...product,
@@ -222,7 +257,9 @@ export const ProductSection = ({
             price={product.price}
             sale={product.sale}
             sessionID={sessionID}
+            selectedCategory={selectedCategory}
             productID={product._id}
+            removeProductFromList={removeProductFromList}
           />
         ))}
       </div>
