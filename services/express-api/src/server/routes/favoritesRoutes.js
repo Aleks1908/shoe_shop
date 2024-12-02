@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { Verify } from "../middleware/verify.js";
 import favHandler from "../handlers/favHandler.js";
-import { logger } from "../config/logger-config.js"
 
 const favoritesRouter = Router();
 
