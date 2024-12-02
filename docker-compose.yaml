@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  node-application: 
+    build: ./services/express-api
+    container_name: node-application
+    ports: 
+      - "6969:6969"
+    restart: always
