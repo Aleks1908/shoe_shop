@@ -8,7 +8,6 @@ const addToFavorites = async (data, sessionId) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `SessionID=${sessionId}`,
     },
     body: JSON.stringify(data),
     credentials: "include",
@@ -22,7 +21,6 @@ const removeFromFavorites = async (data, sessionId) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `SessionID=${sessionId}`,
     },
     body: JSON.stringify(data),
     credentials: "include",
