@@ -6,11 +6,13 @@
 import { app } from "../src/server/app.js"
 import http from "http"
 import {logger} from "../src/server/config/logger-config.js"
+
 /**
  * Get port from environment and store in Express.
  */
 let port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
 
 /**
  * Create HTTP server.
