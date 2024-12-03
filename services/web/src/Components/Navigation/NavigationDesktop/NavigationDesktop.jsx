@@ -61,11 +61,6 @@ export const NavigationDesktop = ({ onCategoryClick, sessionID }) => {
           />
           {/* todo add a check if there is session todo pass inside the category */}
           {/* the id of the user to directly pass it to the backend */}
-          <CategoryLink
-            onClick={handleCategoryClick}
-            category="favorites"
-            description="Show favorites"
-          />
           {/* Other CategoryLink components */}
           {sessionID ? (
             <>
