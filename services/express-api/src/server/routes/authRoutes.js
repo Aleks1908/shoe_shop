@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authHandler from "../handlers/authHander.js";
 import Validate from "../middleware/validate.js";
+import { logger } from "../config/logger-config.js";
 
 const authRouter = Router();
 
@@ -31,14 +32,22 @@ authRouter.post("/login", async (req, res) => {
 });
 
 authRouter.post("/logout", async (req, res) => {
-  let response = await authHandler.logoutUserHandler(req);
+  
+  let options = {
+    maxAge: 0, // would expire in 0 minutes
+    httpOnly: false, // The cookie is only accessible by the web server
+    secure: false,
+    sameSite: "Lax",
+  };
 
-  if (response.success) {
-    res.setHeader("Clear-Site-Data", '"cookies"');
-    return res.send(response); // Ends the response here
-  }
+  res.cookie("SessionID", "", options);
+  res.send();
+  res.end();
+  
+  let authHeaders = req.headers['cookie'];
+  let response = await authHandler.logoutUserHandler(authHeaders);
+  logger.info(response.body);
 
-  res.send(response); // Handles the case where success is false
 });
 
 export default authRouter;

@@ -6,15 +6,16 @@ export const getCookie = (name) => {
 };
 
 export const logoutUser = async (sessionId) => {
-  console.log(sessionId);
+
   const response = await fetch("http://localhost:6969/api/v1/auth/logout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `SessionID=${sessionId}`,
     },
     credentials: "include",
   });
+
+  console.log(response.json());
 
   return response.json();
 };
