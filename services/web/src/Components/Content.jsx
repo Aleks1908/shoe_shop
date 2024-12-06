@@ -8,13 +8,15 @@ import { ProductSection } from "./ProductSection/ProductSection";
 import { useMediaQuery } from "react-responsive";
 import { FooterSection } from "./FooterSection/FooterSection";
 import FilteringMenu from "./FilterSection/FilteringMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./content.css";
+import { getCookie } from "./Navigation/utils";
 
 export const Content = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
 
   const [selectedCategory, setSelectedCategory] = useState("shoes");
+
   const [selectedDescription, setSelectedDescription] =
     useState(`The shoe category refers to a wide range of footwear products designed to be worn 
     on the feet for various purposes. Shoes are essential accessories that provide protection, support, and comfort during daily activities and special 
@@ -43,10 +45,20 @@ export const Content = () => {
     setSortedState(sort);
   };
 
+  const [sessionID, setSessionID] = useState(null);
+
+  useEffect(() => {
+    const sessionCookie = getCookie("SessionID");
+    setSessionID(sessionCookie);
+  }, []);
+
   if (!isMobile) {
     return (
       <div>
-        <NavigationDesktop onCategoryClick={handleCategoryClick} />
+        <NavigationDesktop
+          onCategoryClick={handleCategoryClick}
+          sessionID={sessionID}
+        />
         <BannerSection />
 
         <div className="plp">
@@ -66,6 +78,7 @@ export const Content = () => {
                 selectedCategory={selectedCategory}
                 filteredState={filteredState}
                 sortedState={sortedState}
+                sessionID={sessionID}
               />
             </div>
           </div>
@@ -79,10 +92,11 @@ export const Content = () => {
         <NavigationMobile
           handleFilterClick={handleFilterClick}
           handleSortClick={handleSortClick}
+          sessionID={sessionID}
         />
         <BannerSection />
 
-        <Category onCategoryClick={handleCategoryClick} />
+        <Category onCategoryClick={handleCategoryClick} sessionID={sessionID} />
         <DescriptionSection
           selectedDescription={selectedDescription}
           selectedCategory={selectedCategory}
@@ -91,6 +105,7 @@ export const Content = () => {
           selectedCategory={selectedCategory}
           filteredState={filteredState}
           sortedState={sortedState}
+          sessionID={sessionID}
         />
         <FooterSection />
       </div>

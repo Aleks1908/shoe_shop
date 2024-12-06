@@ -4,24 +4,21 @@
  * Module dependencies.
  */
 import { app } from "../src/server/app.js"
-import https from "https"
-import fs from "fs"
+import http from "http"
 import {logger} from "../src/server/config/logger-config.js"
+
 /**
  * Get port from environment and store in Express.
  */
 let port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-let privateKey  = fs.readFileSync('./src/server/certificates/selfsigned.key', 'utf8');
-let certificate = fs.readFileSync('./src/server/certificates/selfsigned.crt', 'utf8');
-let credentials = {key: privateKey, cert: certificate};
 
 /**
- * Create HTTPS server.
+ * Create HTTP server.
  */
 
-let server = https.createServer(credentials, app);
+let server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
