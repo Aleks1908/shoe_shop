@@ -175,11 +175,11 @@ To check coverage:
 ## Common Issues
 
 ### Dependency Errors
-     Delete `node_modules` and reinstall:
-         ```bash
-         rm -rf node_modules
-         npm install
-         ``` 
+   Delete `node_modules` and reinstall:
+   ```bash
+      rm -rf node_modules
+      npm install
+   ```
 
 ### API Errors
 
