@@ -1,0 +1,226 @@
+// Auth styles
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: min(calc(100vh - 80px), 1080px);
+  background: linear-gradient(to bottom, #f0f2f5, #e6e8eb);
+}
+
+.register,
+.login {
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+
+  h1 {
+    position: relative;
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0 0 10px 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      height: 3px;
+      width: 30px;
+      border-radius: 12px;
+      background: #4070f4;
+    }
+  }
+
+  h2 {
+    color: #707070;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    margin-block: 10px;
+
+    &:first-child {
+      margin-top: 20px;
+    }
+
+    input {
+      height: 50px;
+      width: 100%;
+      outline: none;
+      padding: 0 15px;
+      font-size: 16px;
+      color: #333;
+      border: 1px solid #c7bebe;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+
+      &::placeholder {
+        color: #aaa;
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:focus {
+        border-color: #4070f4;
+        box-shadow: 0 0 5px rgba(64, 112, 244, 0.5);
+
+        &::placeholder {
+          transform: translateX(20px);
+          opacity: 0.7;
+        }
+      }
+    }
+
+    span {
+      display: inline-block;
+      color: red;
+      font-size: 0.875rem;
+      transform: translateY(10px);
+    }
+  }
+
+  &__button {
+    margin-top: 10px;
+
+    button {
+      width: 100%;
+      padding: 15px;
+      color: #fff;
+      letter-spacing: 1px;
+      font-size: 16px;
+      border: none;
+      background: #4070f4;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+
+      &:active {
+        transform: scale(0.98);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      &:hover {
+        background: #0e4bf1;
+      }
+
+      &:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          right: 15px;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #fff;
+          border-top-color: transparent;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+      }
+    }
+
+    span {
+      color: #707070;
+      font-size: 0.875rem;
+      margin-top: 10px;
+    }
+  }
+
+  &__already {
+    margin-top: 20px;
+    text-align: center;
+
+    span {
+      color: #707070;
+      font-size: 0.875rem;
+    }
+
+    a {
+      color: #4070f4;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+
+      &:hover {
+        color: #0e4bf1;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.toast {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  max-width: 380px;
+  padding: 16px 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-left: 5px solid #28a745;
+  border-radius: 10px;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: slideInOut 3s ease-in-out;
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideInOut {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+// Responsive
+@media (max-width: 900px) {
+  .register,
+  .login {
+    padding: 20px;
+    box-shadow: none;
+  }
+}
