@@ -4,32 +4,8 @@ main {
   justify-content: center;
   align-items: center;
   min-height: min(calc(100vh - 80px), 1080px);
-  background-color: #f0f2f5;
+  background: linear-gradient(to bottom, #f0f2f5, #e6e8eb);
   padding: 20px;
-}
-
-h1 {
-  position: relative;
-  font-size: 1.5rem;
-  color: #333;
-  margin: 0 0 10px 0;
-
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    height: 3px;
-    width: 30px;
-    border-radius: 12px;
-    background: #4070f4;
-  }
-}
-
-h2 {
-  color: #707070;
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-left: 10px;
 }
 
 .register {
@@ -41,6 +17,30 @@ h2 {
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   animation: fadeIn 1s ease-in-out;
+
+  h1 {
+    position: relative;
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0 0 10px 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      height: 3px;
+      width: 30px;
+      border-radius: 12px;
+      background: #4070f4;
+    }
+  }
+
+  h2 {
+    color: #707070;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-left: 10px;
+  }
 
   form {
     display: flex;
@@ -65,9 +65,19 @@ h2 {
       border-radius: 10px;
       transition: all 0.3s ease;
 
+      &::placeholder {
+        color: #aaa;
+        transition: all 0.3s ease-in-out;
+      }
+
       &:focus {
         border-color: #4070f4;
         box-shadow: 0 0 5px rgba(64, 112, 244, 0.5);
+
+        &::placeholder {
+          transform: translateX(20px);
+          opacity: 0.7;
+        }
       }
     }
 
@@ -94,6 +104,11 @@ h2 {
       border-radius: 10px;
       transition: background 0.3s ease;
 
+      &:active {
+        transform: scale(0.98);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
       &:hover {
         background: #0e4bf1;
       }
@@ -101,6 +116,19 @@ h2 {
       &:disabled {
         background: #ccc;
         cursor: not-allowed;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          right: 15px;
+          width: 16px;
+          height: 16px;
+          border: 2px solid #fff;
+          border-top-color: transparent;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
       }
     }
 
@@ -127,13 +155,13 @@ h2 {
       text-decoration: none;
 
       &:hover {
+        color: #0e4bf1;
         text-decoration: underline;
       }
     }
   }
 }
 
-// Keyframes for fade-in animation
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -145,7 +173,16 @@ h2 {
   }
 }
 
-// Responsive Design
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive
 @media (max-width: 900px) {
   .register {
     padding: 20px;
