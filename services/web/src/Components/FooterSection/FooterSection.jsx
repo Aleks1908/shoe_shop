@@ -36,7 +36,7 @@ export const FooterSection = () => {
                 <a href='#pp'>Privacy Policy</a>
             </div>
             <div className='creator_info'>
-                <p>© Alekandar Ivanov</p>
+                <p>© Shoe shop | COS3015 </p>
             </div>
         </div>
     )

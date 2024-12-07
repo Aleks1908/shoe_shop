@@ -1,0 +1,154 @@
+// Styles for the register page
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: min(calc(100vh - 80px), 1080px);
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+h1 {
+  position: relative;
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0 0 10px 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    height: 3px;
+    width: 30px;
+    border-radius: 12px;
+    background: #4070f4;
+  }
+}
+
+h2 {
+  color: #707070;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.register {
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    margin-block: 10px;
+
+    &:first-child {
+      margin-top: 20px;
+    }
+
+    input {
+      height: 50px;
+      width: 100%;
+      outline: none;
+      padding: 0 15px;
+      font-size: 16px;
+      color: #333;
+      border: 1px solid #c7bebe;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: #4070f4;
+        box-shadow: 0 0 5px rgba(64, 112, 244, 0.5);
+      }
+    }
+
+    span {
+      display: inline-block;
+      color: red;
+      font-size: 0.875rem;
+      transform: translateY(10px);
+    }
+  }
+
+  &__button {
+    margin-top: 10px;
+
+    button {
+      width: 100%;
+      padding: 15px;
+      color: #fff;
+      letter-spacing: 1px;
+      font-size: 16px;
+      border: none;
+      background: #4070f4;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #0e4bf1;
+      }
+
+      &:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      color: #707070;
+      font-size: 0.875rem;
+      margin-top: 10px;
+    }
+  }
+
+  &__already {
+    margin-top: 20px;
+    text-align: center;
+
+    span {
+      color: #707070;
+      font-size: 0.875rem;
+    }
+
+    a {
+      color: #4070f4;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Keyframes for fade-in animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 900px) {
+  .register {
+    padding: 20px;
+    box-shadow: none;
+  }
+}
