@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import "./registerPage.scss";
+import React, { Fragment, useState, useEffect } from "react";
+import "./auth.scss";
 import { useForm } from "react-hook-form";
 import { FooterSection } from "../Components/FooterSection/FooterSection";
 import { useMutation } from "@tanstack/react-query";
@@ -29,6 +29,7 @@ const registerUser = async (data) => {
 export const RegisterPage = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
   const navigate = useNavigate();
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const {
     register,
@@ -43,7 +44,10 @@ export const RegisterPage = () => {
     mutationFn: registerUser,
     onSuccess: (data) => {
       console.log("Registration successful:", data);
-      navigate("/");
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
     },
     onError: (error) => {
       console.error("Registration failed:", error.message);
@@ -53,6 +57,14 @@ export const RegisterPage = () => {
   const onSubmit = (data) => {
     mutation.mutate(data);
   };
+
+  // Leaving this for testing purpose
+  // useEffect(() => {
+  //   setShowSuccessMessage(true);
+  //   setTimeout(() => {
+  //     setShowSuccessMessage(false);
+  //   }, 4000);
+  // }, []);
 
   return (
     <Fragment>
@@ -98,7 +110,6 @@ export const RegisterPage = () => {
               {mutation.isError && (
                 <span>Registration failed. Please try again.</span>
               )}
-              {mutation.isSuccess && <span>Registration successful!</span>}
             </div>
             <div className="register__already">
               <span>
@@ -107,6 +118,11 @@ export const RegisterPage = () => {
             </div>
           </form>
         </section>
+        {showSuccessMessage && (
+          <div className="toast">
+            <span>Registration successful! Redirecting to login...</span>
+          </div>
+        )}
       </main>
       <FooterSection />
     </Fragment>

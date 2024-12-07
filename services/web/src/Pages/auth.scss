@@ -1,14 +1,15 @@
-// Styles for the register page
+// Auth styles
 main {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
   min-height: min(calc(100vh - 80px), 1080px);
   background: linear-gradient(to bottom, #f0f2f5, #e6e8eb);
-  padding: 20px;
 }
 
-.register {
+.register,
+.login {
   position: relative;
   max-width: 430px;
   width: 100%;
@@ -162,6 +163,23 @@ main {
   }
 }
 
+.toast {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  max-width: 380px;
+  padding: 16px 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-left: 5px solid #28a745;
+  border-radius: 10px;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: slideInOut 3s ease-in-out;
+}
+
+// Animations
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -182,9 +200,26 @@ main {
   }
 }
 
+@keyframes slideInOut {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
 // Responsive
 @media (max-width: 900px) {
-  .register {
+  .register,
+  .login {
     padding: 20px;
     box-shadow: none;
   }
