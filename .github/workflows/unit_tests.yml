@@ -1,0 +1,36 @@
+name: Unit Tests with jest
+
+on:
+  pull_request:
+    types: [ assigned, opened, synchronize, reopened ]
+    paths:
+      - 'services/express-api/**/*.js'
+      - 'services/express-api/**/*.json'
+      - 'services/express-api/**/*.mjs'
+
+defaults:
+  run:
+    working-directory: services/express-api/tests/
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    container:
+      image: node:23-alpine3.19
+
+    env:
+      ENV: ${{secrets.ENV}}
+      PORT: ${{secrets.PORT}}
+      ATLAS_URI: ${{secrets.ATLAS_URI}}
+      SECRET_ACCESS_TOKEN: ${{secrets.SECRET_ACCESS_TOKEN}}
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
