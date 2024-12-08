@@ -18,18 +18,21 @@ const loginUser = async (data) => {
     credentials: "include",
   });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Registration failed");
+  const responseData = await response.json();
+
+  if (!response.ok || !responseData.success) {
+    console.error("Login failed:", responseData.message);
+    throw new Error(responseData.message || "Login failed");
   }
 
-  return response.json();
+  return responseData;
 };
 
 export const LoginPage = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 900px)" });
   const navigate = useNavigate();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const {
     register,
@@ -43,14 +46,15 @@ export const LoginPage = () => {
       console.log("Login successful:", data);
       setShowSuccessMessage(true);
       setTimeout(() => {
-        setShowSuccessMessage(false);
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
+        navigate("/");
       }, 3000);
     },
     onError: (error) => {
-      console.error("Login failed:", error);
+      console.error("Login failed:", error.message);
+      setShowErrorMessage(true);
+      setTimeout(() => {
+        setShowErrorMessage(false);
+      }, 3000);
     },
   });
 
@@ -86,7 +90,6 @@ export const LoginPage = () => {
               <button type="submit" disabled={mutation.isLoading}>
                 {mutation.isLoading ? "Logging in..." : "Login"}
               </button>
-              {mutation.isError && <span>Login failed. Please try again.</span>}
             </div>
             <div className="login__already">
               <span>
@@ -95,12 +98,17 @@ export const LoginPage = () => {
             </div>
           </form>
         </section>
-        {showSuccessMessage && (
-          <div className="toast">
-            <span>Login successful! Redirecting to home.</span>
-          </div>
-        )}
       </main>
+      {showSuccessMessage && (
+        <div className="toast toast--success">
+          <span>Login successful! Redirecting to home.</span>
+        </div>
+      )}
+      {showErrorMessage && (
+        <div className="toast toast--error">
+          <span>Login failed. Please try again.</span>
+        </div>
+      )}
       <FooterSection />
     </Fragment>
   );
