@@ -23,6 +23,9 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 1000;
   animation: slideInOut 3s ease-in-out;
+  z-index: 10000;
+  animation: slideInOut 3s ease-in-out;
+  will-change: opacity, transform;
 }
 
 .toast--success {
@@ -46,5 +49,24 @@ body {
   100% {
     transform: translateX(100%);
     opacity: 0;
+  }
+}
+@keyframes fadeInGrid {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
