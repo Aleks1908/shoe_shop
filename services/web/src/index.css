@@ -25,6 +25,14 @@ body {
   animation: slideInOut 3s ease-in-out;
 }
 
+.toast--success {
+  border-left: 5px solid #28a745;
+}
+
+.toast--error {
+  border-left: 5px solid #dc3545;
+}
+
 @keyframes slideInOut {
   0% {
     transform: translateX(100%);
