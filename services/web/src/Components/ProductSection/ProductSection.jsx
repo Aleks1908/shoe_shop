@@ -41,24 +41,68 @@ const Product = ({
   selectedCategory,
   removeProductFromList,
 }) => {
+  const [buttonText, setButtonText] = useState(
+    selectedCategory === "favorites"
+      ? "Remove from Favorites"
+      : "Add to Favorites",
+  );
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
   const hasSale = typeof sale === "number" && sale < price;
 
-  const handleAddToCart = () => {
-    setShowNotification(true);
-    const data = { item_id: productID };
-    addToFavorites(data, sessionID);
+  useEffect(() => {
+    if (showNotification) {
+      const timer = setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showNotification]);
+
+  const handleAddToCart = async () => {
+    setButtonText("Adding...");
+    setIsButtonDisabled(true);
+
+    try {
+      const data = { item_id: productID };
+      await addToFavorites(data, sessionID);
+
+      setButtonText("Added to Favorites!");
+      setNotificationMessage(`${name} successfully added to favorites!`);
+      setShowNotification(true);
+
+      setTimeout(() => {
+        setButtonText("Remove from Favorites");
+        setIsButtonDisabled(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Failed to add to favorites:", error);
+      setButtonText("Add to Favorites");
+      setIsButtonDisabled(false);
+    }
   };
 
   const handleRemoveFromCart = async () => {
-    setShowNotification(true);
-    const data = { item_id: productID };
-    await removeFromFavorites(data, sessionID);
-    removeProductFromList(productID); // Update the state
-  };
+    setButtonText("Removing...");
+    setIsButtonDisabled(true);
 
-  const dismissNotification = () => {
-    setShowNotification(false);
+    try {
+      const data = { item_id: productID };
+      await removeFromFavorites(data, sessionID);
+
+      setButtonText("Removed!");
+      setNotificationMessage(`${name} successfully removed from favorites!`);
+      setShowNotification(true);
+
+      setTimeout(() => {
+        removeProductFromList(productID);
+      }, 3000);
+    } catch (error) {
+      console.error("Failed to remove from favorites:", error);
+      setButtonText("Remove from Favorites");
+      setIsButtonDisabled(false);
+    }
   };
 
   return (
@@ -86,19 +130,24 @@ const Product = ({
       </div>
       {sessionID && (
         <Fragment>
-          {selectedCategory === "favorites" ? (
-            <div className="buy_btn">
-              <a onClick={handleRemoveFromCart}>Remove from Cart</a>
-            </div>
-          ) : (
-            <div className="buy_btn">
-              <a onClick={handleAddToCart}>Add to Cart</a>
-            </div>
-          )}
+          <div className="buy_btn">
+            <button
+              onClick={
+                selectedCategory === "favorites"
+                  ? handleRemoveFromCart
+                  : handleAddToCart
+              }
+              disabled={isButtonDisabled}
+              className={isButtonDisabled ? "disabled" : ""}
+            >
+              {selectedCategory === "favorites"
+                ? buttonText
+                : "Add to Favorites"}
+            </button>
+          </div>
           {showNotification && (
-            <div className="notification">
-              Item added to cart!
-              <a onClick={dismissNotification}>Dismiss</a>
+            <div className="toast">
+              <span>{notificationMessage}</span>
             </div>
           )}
         </Fragment>
@@ -154,7 +203,7 @@ export const ProductSection = ({
                   : "same-origin",
             },
             credentials: "include",
-          }
+          },
         );
 
         if (!response.ok) {
@@ -174,7 +223,7 @@ export const ProductSection = ({
 
   const removeProductFromList = (productID) => {
     setProducts((prevProducts) =>
-      prevProducts.filter((product) => product._id !== productID)
+      prevProducts.filter((product) => product._id !== productID),
     );
   };
 
@@ -210,22 +259,22 @@ export const ProductSection = ({
   if (sortedState) {
     if (sortedState === "price-asc") {
       limitedProducts = [...limitedProducts].sort(
-        (a, b) => a.effectivePrice - b.effectivePrice
+        (a, b) => a.effectivePrice - b.effectivePrice,
       );
     }
     if (sortedState === "price-des") {
       limitedProducts = [...limitedProducts].sort(
-        (a, b) => b.effectivePrice - a.effectivePrice
+        (a, b) => b.effectivePrice - a.effectivePrice,
       );
     }
     if (sortedState === "alphabetical") {
       limitedProducts = [...limitedProducts].sort((a, b) =>
-        a.name.localeCompare(b.name)
+        a.name.localeCompare(b.name),
       );
     }
     if (sortedState === "alphabetical-rev") {
       limitedProducts = [...limitedProducts].sort((a, b) =>
-        b.name.localeCompare(a.name)
+        b.name.localeCompare(a.name),
       );
     }
   }
