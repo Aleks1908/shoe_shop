@@ -111,8 +111,7 @@ The online store frontend is a React-based web application that delivers a dynam
  │   ├── web/                                     # Front-end web application service
  │        ├── src/                                # Source code directory for the web front-end
  │           ├── Assets/                          # Holds images, fonts, and static resources
- │           ├── Assets/                          # React components making up the UI
- │           ├── Components/        
+ │           ├── Components/                      # React components making up the UI
  │                ├── BannerSection/
  │                ├── CategoryMobile/
  │                ├── DescriptionSection/
@@ -123,7 +122,7 @@ The online store frontend is a React-based web application that delivers a dynam
  │                ├── SortSection/
  │                ├── content.css
  │                ├── Content.jsx                 # Main content layout/component
- │                ├── Pages/                      # Directory for page-level components (e.g., Login, Home, Register)
+ │            ├── Pages/                          # Directory for page-level components (e.g., Login, Home, Register)
  │            ├── index.css
  │            ├── main.jsx                        # Main entry point for the React application
  │       ├── index.html            
