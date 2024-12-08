@@ -8,3 +8,35 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: #fff;
 }
+
+.toast {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  max-width: 380px;
+  padding: 16px 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-left: 5px solid #28a745;
+  border-radius: 10px;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: slideInOut 3s ease-in-out;
+}
+
+@keyframes slideInOut {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

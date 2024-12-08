@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import "../../Pages/auth.scss";
 import { Fragment, useEffect, useState } from "react";
 import "./product_section.css";
 
@@ -42,6 +41,12 @@ const Product = ({
   selectedCategory,
   removeProductFromList,
 }) => {
+  const [buttonText, setButtonText] = useState(
+    selectedCategory === "favorites"
+      ? "Remove from Favorites"
+      : "Add to Favorites",
+  );
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
   const hasSale = typeof sale === "number" && sale < price;
@@ -56,22 +61,48 @@ const Product = ({
   }, [showNotification]);
 
   const handleAddToCart = async () => {
-    setNotificationMessage("Item successfully added to favorites!");
-    setShowNotification(true);
-    const data = { item_id: productID };
-    await addToFavorites(data, sessionID);
+    setButtonText("Adding...");
+    setIsButtonDisabled(true);
+
+    try {
+      const data = { item_id: productID };
+      await addToFavorites(data, sessionID);
+
+      setButtonText("Added to Favorites!");
+      setNotificationMessage(`${name} successfully added to favorites!`);
+      setShowNotification(true);
+
+      setTimeout(() => {
+        setButtonText("Remove from Favorites");
+        setIsButtonDisabled(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Failed to add to favorites:", error);
+      setButtonText("Add to Favorites");
+      setIsButtonDisabled(false);
+    }
   };
 
   const handleRemoveFromCart = async () => {
-    setNotificationMessage("Item successfully removed from favorites!");
-    setShowNotification(true);
+    setButtonText("Removing...");
+    setIsButtonDisabled(true);
 
-    const data = { item_id: productID };
-    await removeFromFavorites(data, sessionID);
+    try {
+      const data = { item_id: productID };
+      await removeFromFavorites(data, sessionID);
 
-    setTimeout(() => {
-      removeProductFromList(productID);
-    }, 3000);
+      setButtonText("Removed!");
+      setNotificationMessage(`${name} successfully removed from favorites!`);
+      setShowNotification(true);
+
+      setTimeout(() => {
+        removeProductFromList(productID);
+      }, 3000);
+    } catch (error) {
+      console.error("Failed to remove from favorites:", error);
+      setButtonText("Remove from Favorites");
+      setIsButtonDisabled(false);
+    }
   };
 
   return (
@@ -99,15 +130,21 @@ const Product = ({
       </div>
       {sessionID && (
         <Fragment>
-          {selectedCategory === "favorites" ? (
-            <div className="buy_btn">
-              <a onClick={handleRemoveFromCart}>Remove from Favorites</a>
-            </div>
-          ) : (
-            <div className="buy_btn">
-              <a onClick={handleAddToCart}>Add to Favorites</a>
-            </div>
-          )}
+          <div className="buy_btn">
+            <button
+              onClick={
+                selectedCategory === "favorites"
+                  ? handleRemoveFromCart
+                  : handleAddToCart
+              }
+              disabled={isButtonDisabled}
+              className={isButtonDisabled ? "disabled" : ""}
+            >
+              {selectedCategory === "favorites"
+                ? buttonText
+                : "Add to Favorites"}
+            </button>
+          </div>
           {showNotification && (
             <div className="toast">
               <span>{notificationMessage}</span>
