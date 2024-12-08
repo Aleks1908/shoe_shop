@@ -32,7 +32,7 @@ export const Content = () => {
   const handleFilterClick = (
     selectedColor,
     selectedMinPrice,
-    selectedMaxPrice
+    selectedMaxPrice,
   ) => {
     setFilteredState({
       color: selectedColor,

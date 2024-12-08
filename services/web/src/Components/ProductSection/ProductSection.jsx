@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import "../../Pages/auth.scss";
 import { Fragment, useEffect, useState } from "react";
 import "./product_section.css";
 
@@ -42,23 +43,35 @@ const Product = ({
   removeProductFromList,
 }) => {
   const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
   const hasSale = typeof sale === "number" && sale < price;
 
-  const handleAddToCart = () => {
+  useEffect(() => {
+    if (showNotification) {
+      const timer = setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showNotification]);
+
+  const handleAddToCart = async () => {
+    setNotificationMessage("Item successfully added to favorites!");
     setShowNotification(true);
     const data = { item_id: productID };
-    addToFavorites(data, sessionID);
+    await addToFavorites(data, sessionID);
   };
 
   const handleRemoveFromCart = async () => {
+    setNotificationMessage("Item successfully removed from favorites!");
     setShowNotification(true);
+
     const data = { item_id: productID };
     await removeFromFavorites(data, sessionID);
-    removeProductFromList(productID); // Update the state
-  };
 
-  const dismissNotification = () => {
-    setShowNotification(false);
+    setTimeout(() => {
+      removeProductFromList(productID);
+    }, 3000);
   };
 
   return (
@@ -88,17 +101,16 @@ const Product = ({
         <Fragment>
           {selectedCategory === "favorites" ? (
             <div className="buy_btn">
-              <a onClick={handleRemoveFromCart}>Remove from Cart</a>
+              <a onClick={handleRemoveFromCart}>Remove from Favorites</a>
             </div>
           ) : (
             <div className="buy_btn">
-              <a onClick={handleAddToCart}>Add to Cart</a>
+              <a onClick={handleAddToCart}>Add to Favorites</a>
             </div>
           )}
           {showNotification && (
-            <div className="notification">
-              Item added to cart!
-              <a onClick={dismissNotification}>Dismiss</a>
+            <div className="toast">
+              <span>{notificationMessage}</span>
             </div>
           )}
         </Fragment>
@@ -154,7 +166,7 @@ export const ProductSection = ({
                   : "same-origin",
             },
             credentials: "include",
-          }
+          },
         );
 
         if (!response.ok) {
@@ -174,7 +186,7 @@ export const ProductSection = ({
 
   const removeProductFromList = (productID) => {
     setProducts((prevProducts) =>
-      prevProducts.filter((product) => product._id !== productID)
+      prevProducts.filter((product) => product._id !== productID),
     );
   };
 
@@ -210,22 +222,22 @@ export const ProductSection = ({
   if (sortedState) {
     if (sortedState === "price-asc") {
       limitedProducts = [...limitedProducts].sort(
-        (a, b) => a.effectivePrice - b.effectivePrice
+        (a, b) => a.effectivePrice - b.effectivePrice,
       );
     }
     if (sortedState === "price-des") {
       limitedProducts = [...limitedProducts].sort(
-        (a, b) => b.effectivePrice - a.effectivePrice
+        (a, b) => b.effectivePrice - a.effectivePrice,
       );
     }
     if (sortedState === "alphabetical") {
       limitedProducts = [...limitedProducts].sort((a, b) =>
-        a.name.localeCompare(b.name)
+        a.name.localeCompare(b.name),
       );
     }
     if (sortedState === "alphabetical-rev") {
       limitedProducts = [...limitedProducts].sort((a, b) =>
-        b.name.localeCompare(a.name)
+        b.name.localeCompare(a.name),
       );
     }
   }
