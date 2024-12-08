@@ -1,3 +1,5 @@
+[![Unit Tests with jest](https://github.com/Aleks1908/shoe_shop/actions/workflows/unit_tests.yml/badge.svg?branch=main)](https://github.com/Aleks1908/shoe_shop/actions/workflows/unit_tests.yml)
+
 # Shoe Shop
 
 # Online Fashion Store - Product Documentation
