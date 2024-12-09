@@ -1,15 +1,21 @@
-.plp{
-    display: flex;
+.plp {
+  display: flex;
 }
-.sorting_position{
-    display: flex;
+
+.sorting_position {
+  display: flex;
+  animation: fadeInFromLeft 1s ease-in-out forwards;
 }
-.filter_position{
-    width: 12.5%;
+
+.filter_position {
+  width: 12.5%;
+  animation: fadeInFromLeft 1s ease-in-out forwards;
 }
-.content_position{
-    width: 87.5%;
+
+.content_position {
+  width: 87.5%;
 }
-.description_desk{
-    width: 80%;
+
+.description_desk {
+  width: 80%;
 }

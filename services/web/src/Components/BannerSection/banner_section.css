@@ -1,6 +1,7 @@
 .banner_section{
     display: flex;
     justify-content: center;
+    animation: fadeInFromLeft 1s ease-in-out forwards;
 }
 
 .banner_section .slider{

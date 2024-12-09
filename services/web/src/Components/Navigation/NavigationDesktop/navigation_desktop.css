@@ -4,6 +4,8 @@
   display: flex;
   position: sticky;
   top: 0;
+  z-index: 1;
+  animation: fadeInFromLeft 1s ease-in-out forwards;
 }
 .logo_desk {
   display: flex;
