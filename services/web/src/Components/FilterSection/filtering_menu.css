@@ -148,11 +148,17 @@ input[type="range"]::-moz-range-thumb {
   background-color: #fff;
   border: 1px solid #000;
   padding: 5px 10px;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-bottom: 10px;
   font-size: 18px;
   margin-top: 20px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.reset_button button:hover {
+  background-color: #f0f0f0;
+  color: #000000;
 }
 
 @media only screen and (max-width: 900px) {

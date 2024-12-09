@@ -4,7 +4,6 @@ import logo from "../../../Assets/logo.png";
 import { useEffect } from "react";
 import { useState } from "react";
 import { getCookie, logoutUser } from "../utils";
-//todo add check if session to not show login register and show logout
 
 const CategoryLink = ({ category, description, onClick }) => (
   <li
@@ -59,15 +58,12 @@ export const NavigationDesktop = ({ onCategoryClick, sessionID }) => {
             category="limited"
             description="Limited edition items are unique and exclusive products that are produced in restricted quantities, making them highly sought after and prized by collectors and enthusiasts alike. These special creations are meticulously crafted to showcase exceptional quality, design, and attention to detail, setting them apart from their mass-produced counterparts."
           />
-          {/* todo add a check if there is session todo pass inside the category */}
-          {/* the id of the user to directly pass it to the backend */}
-          {/* Other CategoryLink components */}
           {sessionID ? (
             <>
               <CategoryLink
                 onClick={handleCategoryClick}
                 category="favorites"
-                description="Show favorites"
+                description="The favorites category showcases a curated collection of items that you have marked as favorites. These items are your top picks, selected for their quality, style, or personal significance. Easily access and manage your favorite products in one place."
               />
               <li className="category_option_desk">
                 <a

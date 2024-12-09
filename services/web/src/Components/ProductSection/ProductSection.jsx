@@ -60,6 +60,14 @@ const Product = ({
     }
   }, [showNotification]);
 
+  useEffect(() => {
+    setButtonText(
+      selectedCategory === "favorites"
+        ? "Remove from Favorites"
+        : "Add to Favorites",
+    );
+  }, [selectedCategory]);
+
   const handleAddToCart = async () => {
     setButtonText("Adding...");
     setIsButtonDisabled(true);

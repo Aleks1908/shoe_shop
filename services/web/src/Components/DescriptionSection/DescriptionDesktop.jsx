@@ -1,11 +1,19 @@
-/* eslint-disable react/prop-types */
-import './description_section.css'
+import "./description_section.css";
 
-export const DescriptionSection = ({ selectedDescription, selectedCategory }) => {
-    return (
-      <div className="description_section">
-        <h1>You are viewing {selectedCategory} category</h1>
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+export const DescriptionSection = ({
+  selectedDescription,
+  selectedCategory,
+}) => {
+  return (
+    <div className="description_section">
+      <h1>{capitalizeFirstLetter(selectedCategory)} category</h1>
+      <div className="description_section--container">
         <p>{selectedDescription}</p>
       </div>
-    );
-  };
+    </div>
+  );
+};
