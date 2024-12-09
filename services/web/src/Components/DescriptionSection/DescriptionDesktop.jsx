@@ -10,7 +10,7 @@ export const DescriptionSection = ({
 }) => {
   return (
     <div className="description_section">
-      <h1>{capitalizeFirstLetter(selectedCategory)} category</h1>
+      <h1>{capitalizeFirstLetter(selectedCategory)}</h1>
       <div className="description_section--container">
         <p>{selectedDescription}</p>
       </div>
