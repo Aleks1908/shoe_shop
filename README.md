@@ -147,6 +147,10 @@ The architecture follows a typical three-tier model:
 
  ```bash
  shoe_shop/
+ ├──.github/
+ │   ├── workflows
+ │        ├── unit_tests.yml
+ │   ├── CODEOWNERS
  ├── services/                                    # Various backend/front-end services
  │   ├── express-api/                             # Backend API service built using Express.js
  │   ├── bin/
