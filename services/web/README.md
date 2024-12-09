@@ -106,6 +106,7 @@ The online store frontend is a React-based web application that delivers a dynam
 
  ```bash
  shoe_shop/
+ ├──.github/
  ├── services/                                    # Various backend/front-end services
  │   ├── express-api/                             # Backend API service built using Express.js
  │   ├── web/                                     # Front-end web application service
